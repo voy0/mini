@@ -124,6 +124,7 @@ bool IsMarkInRootCorrect(node* root)
     return (i + root->mark == root->h);
 }
 
+// Wypisz wysokosc drzewa ktorego nie ma
 void PrintMissingH(node* root)
 {
     bool H[root->h] = {false};

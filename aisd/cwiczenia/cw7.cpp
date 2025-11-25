@@ -24,11 +24,7 @@ node* Extract(node* &head)
     node* p = head;
     head = head->next;
 
-    if(!head->next)
-    {
-        head = NULL;
-        return p;
-    }
+    if(!head)   return p;
 
     head->prev = p->prev;
     p->next = NULL;
@@ -71,7 +67,6 @@ void AddToEnd(node*& head, node* tree)
 }
 
 
-// mark = 1
 void CorrectAndAddToEnd(node*& head, node* tree)
 {
     if(tree->mark == 0)
@@ -97,11 +92,20 @@ void CorrectAndAddToEnd(node*& head, node* tree)
         if(tree->child->prev->h == tree->h - 3)
         {
             tree->mark = 0;
-            tree->h = 2;
+            tree->h -= 2;
             AddToEnd(head, tree);
             return;
         }
         // brakuje ostatniego drzewa i w srodku, czyli drzewo ma wysokosc h - 1 i mark = 1
+        if(tree->child->prev->h == tree->h - 2)
+        {
+            tree->mark = 1;
+            tree->h--;
+            AddToEnd(head, tree);
+            return;
+        }
+        
+        // brakuje dwoch drzew w srodku
         // odcinamy po kolei dzieci i dodajemy do kolejki
         node* p = tree->child;
         while(p){
