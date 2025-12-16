@@ -77,7 +77,7 @@
         int bl; // {-1, 0, 1}
         node* left, *right;
     }
-
+    
     void RL(node* &root){ // O(1)
         node* x = root;
         node* z = root->right;
@@ -98,4 +98,12 @@
 
         root = y;
     }
+// AVL
+// pierwsza literka to na ktora strone drzewo jest przechylone
+// druga literka no na ktora strone dziecko po stronie pierwszej literki jest przechylone
 
+// UAKTUALNIANIE BL
+// co musimy wiedziec zeby uaktualnic bl drzewa AVL
+// idac od dolu do gory
+// - czy poddrzewo uroslo (funkcje zwracaja flage czy uroslo h = {true, false})
+// - z ktorej strony wrocilismy
