@@ -1,0 +1,177 @@
+PROCESY
+	- gdy proces rodzic umrze przed dzieckiem, proces dziecko staje się sierotą (orphan proces)
+	i przejmowana jest nad nim opieka zcetnralizowana rządowa (adopcja przez proces OS, init)
+	
+	0 odnosi się do całej grupy procesów
+	kill(0, SIGKILL) zatrzymuje całą grupę procesów
+	
+	do zliczania procesów potomnych używa się zliczania udanych wywołań wait i waitpid
+	
+	ZGŁEBIĆ SIGCHILD, ECHILD sygnały procesów
+
+<unistd.h>
+	fork 	=> tworzy nowy proces (child process)
+			- child process jest identyczną kopią procesu rodzica poza:
+				- PID , ma inny unikalny process ID
+				- są jeszcze jakieś róznice (jeszcze troche i ciut ciut)
+	+ zwraca 0 do child processu
+	+ zwraca PID child do parenta
+	- zwraca -1 do parenta i żaden child process nie jest utworzony, ustawia errno
+	pid_t fork(void);
+	
+	getpid 	=> zwraca PID procesu
+	++ zawsze się powodzi, nie ma return value do errora
+	pid_t getpid(void);
+	
+	getppid	=> zwraca parent PID procesu wywołującego funkcję
+	++ zawsze się powodzi, nie ma return value do errora
+	pid_t getppid(void);
+	
+	sleep 	=> zatrzymaj wykonywanie wątku na ilość sekund
+	+ zwraca 0 
+	- zwraca ilość sekund których nie przespał		
+	unsigned sleep(unsigned seconds);
+	
+<sys/wait.h>
+	wait 	=> wstrzymuje process macierzysty do zakończenia któregokolwiek z child processów
+			- gdy child process się zakończy wait() zbiera jego PID i status zakończenia
+			- *stat_loc - wskaznik do zmiennej przechowywującej status zakończenia
+			- zawiera makra do analizy statusu
+	+ zwraca PID zakończonego child processu
+	- zwraca -1 ustawia errno
+	pid_t wait(int *stat_loc);
+	
+	waitpid	=> wstrzymuje process macierzysty do zakończenia procesu podanego poprzez PID, lub grupy 				
+			procesów
+			- pid 		- określa proces na który ma czekać
+				>0		Oczekuje na proces o PID = pid
+				-1		Oczekuje na zakończenie dowolnego child procesu
+				0		Oczekuje na zakończenie dowolnego cp z tej samej grupy procesów 
+						co proces wywołujący
+				<-1		Oczekuje na zakończenie dowolnego procesu potomnego z grupy 
+						procesów PID równym -pid
+			- *stat_loc	- wskaznik do zmiennej przechowywującej status zakończenia
+			- options	- flagi
+				WNOHANG	nie zatrzymuje wykonywania procesu macierzystego, jeżeli status 
+						jakiegokolwiek procesu nie jest dostępny
+	+ zwraca PID zakończonego lub oczekiwanego procesu
+	+ zwraca 0 gdy użyta opcja WNOHANG oraz żaden proces nie został zakończony
+	- zwraca -1 ustawia errno 
+	pid_t waitpid(pid_t pid, int *stat_loc, int options);
+
+
+SYGNAŁY
+	nie używać sleep z alarm bo może wystąpić konflikt pomiedzy użyciem SIGALRM
+		należy wtedy użyć nanosleep
+	- komunikacja międzyprocesami
+	SIGUSR1, SIGUSR2 zdefiniowane przez użytkownika sygnały
+	SIGINT	Zakończenie	Przerwanie procesu (np. Ctrl+C).
+	SIGKILL	Zakończenie	Bezwarunkowe zakończenie procesu.
+	SIGSTOP	Zatrzymanie	Wstrzymanie procesu.
+	SIGCONT	Kontynuowanie	Wznowienie zatrzymanego procesu.
+	SIGTERM	Zakończenie	Prośba o zakończenie procesu.
+	
+	
+<signal.h>
+	sigaction	=> zmienia zachowanie dla sygnału, podczas wywołania ustawia się taki listener
+			- sig 	numer sygnału
+			- act	nowe zachowanie dla sygnału
+			- oact 	stare zachowanie sygnału
+			
+			struct sigaction
+				
+				void(*) (int) 	sa_handler
+					wskaźnik do funkcji zajmującej się łapaniem sygnału
+					lub do makra SIG_IGN, SIG_DFL
+					SIG_IGN - ignorowanie sygnału
+					SIG_DFL - defaultowa operacja dla sygnału, może być
+						ignorowanie lub zakończenie lub jakiś inny
+						kwiatek, zazwyczaj jednak do zakończenia
+				
+				sigset_t		sa_mask
+					zbiór sygnałów które należy blokować, ignorować podczas łapania sygnału
+				
+				int				sa_flags
+					flagi do zmiany zachowań sygnałów
+					
+				void(*) (int, siginfo_t*, void*)	sa_sigaction
+					drugi?? wskaźnik do funkcji zajmującej się łapaniem sygnału
+					  
+	int sigaction(int sig, const struct sigaction *restrict act, struct sigaction *restrict oact);
+	
+	kill	=> wysyła sygnał sig do procesu o PID 
+			- pid 
+				0 	- wysyła sygnał do całej grupy procesów
+				>0 	- wysyła sygnał do PID o pid
+				-1 	- wysyła do kurwa wszystkich do których ma dostęp (poza systemowymi)
+				<-1	- wysyła do grupy procesów o abs(pid)
+	+ zwraca 0
+	- zwraca -1 i ustawia errn
+	int kill(pid_t pid, int sig);
+	
+	sigsuspend	=> czekanie na sygnał
+			- w masce sigmask (sigma mask) podaje się sygnały które ma blokować
+			- proces się wstrzymuje dopóki jeden z sygnałów nienależący do maski przyleci
+			na magicznym dywanie
+	+ huja zwraca, zatrzymuje wątek w nieskończoność
+	- zwraca -1, ustawia errno
+	int sigsuspend(const sigset_t *sigmask);
+	
+	sigprocmask	=> ogarnia albo zmienia sigmaske procesu
+			- how	określa jak zmienić maske sygnału
+				SIG_BLOCK		dodaje sygnały z set do maski
+				SIG_UNBLOCK		usuwa sygnały z set
+				SIG_SETMASK		zmienia maskę na set
+			- set 	maska sygnałów
+			- odlset 	jeśli nie jest NULL to zapisuje starą maskę, przed zmianą na tą zmienną
+	+ zwraca 0 essa
+	- zwraca -1 i ustawia errno
+	int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oset);
+	
+	sigaddset	=> dodaj pojedyńczy sygnał do sigsetu, nie sigmaski, bo sigmaska jest juz
+				zaimplementowanym sigsetem
+			- set 	sigmaska
+			- signo numerek sygnału hehe
+	+ zwraca 0 essa
+	- zwraca -1 i ustawia errno womp womp		
+	int sigaddset(sigset_t *set, int signo);
+	
+	sigemptyset => inicjalizuje sigset (sigmamaske), ustawia jako pusty, 
+				wiec zeruje jak poda się istniejący
+			- set 	sigmaska
+	+ 0 essa
+	- -1 errno womp womp
+	int sigemptyset(sigset_t *set);
+	
+<time.h>						
+	nanosleep	=> zatrzymaj wykonywanie wątku z precyzją do nanosekund
+			- rqtp wskaźnik na strukturę określającą czas oczekiwania, 
+			która zawiera sekundy, nanosekundy
+			- rmtp zwraca pozostały czas, jeśli nanosleep zostanie przerwany sygnałem	
+	+ zwraca 0 po upłynięciu czasu
+	- zwraca -1 i ustawia errno	
+	int nanosleep(const struct timespec *rqtp, struct timespec *rmtp);
+	
+<unistd.h>
+	alarm	=> po upływie sekund wysyła SIGALARM do procesu
+	+ zwraca 0
+	- zwraca ilość sekund do czasu realizacji drugiego alarm() gdy jest w trakcie upływania
+	unsigned alarm(unsigned seconds);
+
+<string.h>
+	memset	=> wypełnia n bajtów w miejscu pamięci wskazywanego przez s wartością c 
+	+ zwraca s
+	- huja zwraca
+	void *memset(void *s, int c, size_t n);
+	
+
+	
+
+	
+
+	
+	
+	
+	
+	
+	

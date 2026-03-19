@@ -1,0 +1,219 @@
+PROGRAMISTYCZNE CIEKAWOSKI
+    - do debugowania lepsze jest fprintf(stderr, ...) bo nie buforuje danych
+    tak jak printf
+    
+    size_t	int w przedziale [0, SIZE_MAX]
+    ssize_t	int w przedziale [-1, SSIZE_MAX]
+
+#DEFINE do extra funkcjonalnosci (przed includem)
+    #define _GNU_SOURCE
+        - do dostepu do makra TEMP_FAILURE_RETRY
+    #define _XOPEN_SOURCE=500
+        - do dostepu do funkcji nftw
+
+TYPY DANYCH
+    size_t      - najwiekszy teoretyczny rozmiar obiektu
+    ssize_t     - taki jak size_t ale ma opcje reprezentacji znaku (-) (signed)size_t
+
+MAKRA
+    #define _GNU_SOURCE
+    TEMP_FAILURE_RETRY(operacja)    
+        - powtarza operacje do momentu kiedy (operacja) nie zwroci -1
+
+<stdio.h>
+    fopen   => otwarcie, stworzenie pliku 
+        r   - otwarcie do odczytu
+        r+  - otworz plik do czytania, zapisu
+        w w+- skroc do zera, stworz plik do zapisu
+        a a+- dopisz do konca pliku
+    + zwraca pointer do obiektu FILE
+    - zwraca NULL pointer, ustawia errno
+    FILE *fopen(const char *restrict pathname, const char *restrict mode);
+
+    fseek   - ustaw pozycje kursora w pliku, po otwarciu pliku kursor wskazuje
+            na pierszy bajt, z wyjatkiem pliku otwartego w trybie a - append,
+            ktory niezmiennie wskazuje na koniec pliku niezaleznie od wywolan
+            funkcji fseek
+            - offset ilosc bajtow o ktora sie przesunac
+            - whence od jakiego miejsca w pliku mamy sie przesunac o offset
+                - SEEK_SET offset od poczatku pliku
+                - SEEK_CUR offset od obecnej pozycji kursora
+                - SEEK_END offset od konca pliku, moze to byc tylko var ujemna, 
+                0 wartosc ustawia kursor na bajt po ostatnim bajcie pliku,
+                odczytanie pozycji kursora ftell() podaje dokladny rozmiar pliku
+                w bajtach, przydatne do alokacji dokladnej ilosci pamieci
+    int fseek(FILE *stream, long offset, int whence);
+
+    fread   - dzieli plik na czesci i zapisuje do tablicy
+    size_t fread(void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream);
+
+    fclose  - zwalnia zasoby zamykajac strumien pliku
+int fclose(FILE *stream);
+
+<stdlib.h>
+    atoi    - zwraca integer z konwersji stringa
+    int atoi(const char *str);    
+
+    strtol  - zwraca long long int z konwersji stringa
+    long strtol(const char *restrict nptr, char **restrict endptr, int base);
+
+man dirent.h
+<dirent.h>
+    opendir => otwiera katalog do odczytania przez readdir
+            - zwraca obiekt typu DIR, do odczytu danych katalogu
+            - przyjmuje dirname w formie stringa, "." do aktualnego katalgou
+    + zwraca pointer do DIR*
+    - zwraca NULL pointer i ustawia errno
+    DIR *opendir(const char *dirname);
+
+    readdir - zwraca obiekt struktury dirent
+            - do przejrzenia calego katalogu nalezy wywolac readdir tyle razy
+            az nie zwroci NULL
+            - przed jej wywolaniem ustawic ernno na zero i sprawdzac pod
+            wywolaniu czy niezerowa (czy nie koniec dir)
+            - dirent posiada pola
+                - ino_t d_ino       identyfikator pliku ( numer inoda )
+                - char d_name[]     nazwa pliku
+    struct dirent *readdir(DIR *dirp);
+    
+    closedir    - zamyka directory, zwalnia zaasoby
+    int closedir(DIR *dirp);
+
+    opendir, readir, closedir
+        - zwracaja 0 gdy sukces
+        - nie 0 gdy blad
+
+man sys_stat.h - structura stat
+man 3p fstatat
+<sys/stat.h>
+    stat    - zbiera informacje o pliku z path, i zapisuje je do struktury typu
+            stat, gdy path wskazuje na symlink daje info o pliku pod symlinkiem
+    + zwraca 0
+    - zwraca -1, ustawia errno
+    int  stat(const char *restrict path, struct stat *restrict buf);
+
+    lstat   - tak jak stat, tyle ze daje info o samym symlinku
+    + zwraca 0
+    - zwraca -1, ustawia errno
+    int lstat(const char *restrict path, struct stat *restrict buf);
+
+    restricted  - pointer do ktorego dodane jest to slowko rezerwuje sobie obiekt
+            na swoja wylacznosc tak ze zaden inny pointer nie moze wskazywac na
+            ten sam obiekt
+
+    Makra przyjmujace mode_t m = buf->st_mode
+        S_ISREG(m)  - czy to zwykly plik
+        S_ISDIR(m)  - czy to katalog
+        S_ISLINK(m) - czy to symlink
+    
+    umask   - ustawia uprawnienia calego procesu
+    mode_t umask(mode_t cmask);
+
+<ftw.h>
+    ftw     - funkcja rekursywnie schodzi w glab drzewa z rootem w path
+            - dla kazdego obiektu wywoluje funkcje za pomoca wskaznika fn
+            - przestazala
+    int ftw(const char *path, 
+            int (*fn)(const char *, const struct stat *ptr, int flag), 
+            int ndirs);
+
+    #define _XOPEN_SOURCE=500
+    nftw    - funkcja rekursywnie schodzi w glab drzewa z rootem w path
+            - takie jak ftw ale przyjmuje flagi
+            fn:
+            - wskaznik na funkcje, 4 argumenty
+            1. sciezka do rozwazanego katalogu
+            2. wskaznik do struktury stat
+            3. mode funkcji przyjmujacy odwiedzony FTW_D, FTW_F, FTW_SL, FTW_DNR
+            4. FTW struct informujacy o level -glebi, base -indeks znaku w sciezce
+            - fd_limit        - maksymalna glebia przeszukania
+            - flags - flagi modyfikujace dzialanie, mozna laczyc operatorem |
+                    FTW_CHDIR - zmienia roboczy katalog na aktualnie przegladany
+                    FTW_DEPTH - przeszukanie w glab, domyslnie: wszerz
+                    FTW_PHYS  - odwiedzane linki w same sobie a nie same pliki
+                                pod linkiem         
+    int nftw(const char *path, 
+            int (*fn)(const char *, const struct stat *, int, struct FTW *), 
+            int fd_limit, int flags);        
+
+<unistd.h>
+    getcwd - zwraca aktualna sciezke katalogu
+            - buf jest wczesniej zaalokowana tablica znakow (przynajmniej size)
+            - do buf jest zapisywana bezwzgledna sciezka plikow
+    char *getcwd(char *buf, size_t size);
+
+    getopt  => parser lini komend do definiowania flag
+            - wpisuje argumenty do zmiennej optarg
+            - opstring -> zawiera opcje przyjmowania flag
+                a:      opcja bierze argument
+
+    + zwraca nastepny char flagi
+    - gdy wykryje brakujacy argument flagi zwraca :
+    - gdy wykryje argument ktorego nie powinno byc zwraca ?
+    - zwraca -1 gdy przeszedl wszystko
+    int getopt(int argc, char * const argv[], const char *optstring);
+
+    chdir   - zmienia sciezke
+    + zwraca 0
+    - zwraca -1, nie zmienia aktualnego dir, ustawia errno
+    int chdir(const char *path);
+
+    unlink  - usuwa plik
+    int unlink(const char *path);
+
+DO OPERACJI NISKOPOZIOMOWYCH NA PLIKACH
+<unistd.h>
+    read    => czyta dane z pliku i zapisuje je do bufora
+            - fildes to fd (deskryptor pliku)
+            - *buf wskaznik na bufor w ktorym zapisane beda dane
+            - nbyte rozmiar danych ktorych ma oczekiwac funkcja
+    + zwraca ilosc bajtow ktore udalo sie wczytac do bufora
+    - zwraca -1, ustawia errno
+    ssize_t read(int fildes, void *buf, size_t nbyte);
+
+    write   => zapisuje dane do pliku z bufora
+            - fildes to fd (deskryptor pliku)
+            - *buf wskaznik na bufor z ktorego pobierane beda dane do zapisu
+            - nbyte rozmiar danych przeznaczonych do zapisania
+    + zwraca ilosc bajtow ktore udalo sie zapisac do pliku
+    - zwraca -1, ustawia errno
+    ssize_t write(int fildes, const void *buf, size_t nbyte);
+
+    close   => dealokuje fd, czyli uzdatnia do ponownego otworzenia przez innne
+            funkcje czy procesy
+    + zwraca 0
+    - zwraca -1 i ustawia errno
+    int close(int fildes);
+
+<sys/stat.h>
+    mknod   => tworzy nowy plik
+            - rodzaj tworzonego pliku zalezny od mode
+            - do mode mozna dodaj za pomoca |(OR) flagi z uprawnieniami
+    + zwraca 0
+    - zwraca -1 i ustawia errno, plik nie zostanie stworzony
+    int mknod(const char *path, mode_t mode, dev_t dev);
+
+<sys/stat.h>
+<fcntl.h>
+    open    => tworzy niskopoziomowy file descriptor (fd) do odnoszenia sie od pliku
+            - oflag flagi otwarcia pliku polaczone bitowa operacja |(OR)
+    + zwraca unsigned int reprezentujacy deskryptor pliku
+    - zwraca -1, ustawia errno
+    int open(const char *path, int oflag, ...);
+
+<sys/uio.h>
+    writev  => pozwala zebrac dane z wielu miejsc i zapisac je do pliku
+            - filedes -> fd do ktorego zapisywane sa dane
+            - iov -> tablica struktur opisuajca bufory z ktorych zbiera dane
+                struct iovec
+                    void   *iov_base -> wskaznik na obszar pamieci
+                    size_t  iov_len  -> dlugosc obszaru pamieci
+            - iovcnt -> rozmiar tablicy iov
+
+            Funkcja ta zapisuje do filedes:
+                iov[0].iov_len bajtow zaczynajac od iov[0].iov_base
+            nastepnie
+                iov[1].iov_len bajtow zaczynajac od iov[1].iov_base 
+            ... az do
+                iov[iovcnt-1].iov_len bajtow zaczynajac od iov[iovcnt-1].iov_base.
+    ssize_t writev(int fildes, const struct iovec *iov, int iovcnt);

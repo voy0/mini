@@ -1,0 +1,33 @@
+String Manipulation Functions (from <string.h>):
+
+strcpy() - Copy string
+strncpy() - Copy limited characters
+strcat() - Concatenate strings
+strncat() - Concatenate limited characters
+strcmp() - Compare strings
+strncmp() - Compare limited characters
+strlen() - Get string length
+strchr() - Find first occurrence of character
+strrchr() - Find last occurrence of character
+strstr() - Find substring
+strtok() - Split string into tokens
+
+String Conversion Functions:
+
+atoi() - Convert string to integer
+atof() - Convert string to float
+atol() - Convert string to long
+strtol() - Convert string to long with error handling
+strtod() - Convert string to double
+sprintf() - Convert to formatted string
+sscanf() - Parse formatted string
+
+Character Manipulation (from <ctype.h>):
+
+isalpha() - Check if alphabetic
+isdigit() - Check if numeric
+isalnum() - Check if alphanumeric
+islower() - Check if lowercase
+isupper() - Check if uppercase
+tolower() - Convert to lowercase
+toupper() - Convert to uppercase
