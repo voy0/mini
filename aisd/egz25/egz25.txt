@@ -1,0 +1,89 @@
+1. 
+a)
+Złożoność czasowa algorytmu jest to funkcja, której argumentem jest...
+ rozmiar zbioru danych
+Funkcja ta określa... czas wykonania wszystkich operacji elementarnych algorytmu na zbiorze danych
+b)
+Kopiec zupełny można zbudować metodą od góry ze złożonościa O(n log n) lub metodą od dołu ze złożonościa O(n)
+c)
+Złożoność zamortyzowana - złożoność pesymistyczna n operacji podzielona przez n
+
+d) Binarne drzewa zrównoważowne to drzewa BST w których pesymistyczna złożoność wyszukiwania jest logarytmiczna
+e) Pes. czas. złożoność Quick Sort O(n^2), Pes. zł. pamięciowa O(log n)
+
+
+2.
+b) wymień dwa najważniejsze abstrakcyjne typy danych. Wybierz dla każdego strukure danych i opisz budowe, złożoności podstawowych operacji
+Kolejka priorytetowa: 
+Kopiec Fibonacciego
+ - jest to las drzew dwumianowych nie uporządkowanych według wysokości
+ - Każdy węzeł ma klucz, wskaźniki: next, prev, child, i atrybut mark
+ - dla każdego węzła może być usunięte najwyżej jedno poddrzewo, jeśli dany węzeł ma usunięte poddrzewo to jest zamarkowany
+ - Złożoność operacji: Insert: O(1), Max: O(1), DeleteMax: O(log n) przez Consolidate
+
+ Słownik:
+ Drzewo AVL
+ - zrównoważone drzewo BST
+ - dla dowolnego węzła różnica wysokości poddrzew jest nie większa niż 1
+ - każdy węzeł ma klucz, wskaźnik: left, right, i atrybut bl (balance)
+ - atrybut balance bl = hL - hR (wysokość lewego - wysokość prawego)
+ - Złożoność operacji: Search, Insert, Delete: O(log n)
+
+c)Zalety SelectionSort i InsertionSort
+SelectionSort:
+- Dla posortowanej tablicy algorytm wykona się w stałym czasie
+- W porównaniu do innych algorytmów sortujących ma najmniej przestawień: n-1
+InsertionSort:
+- Szybki dla danych prawie już posortowanych
+
+3.
+BST
+
+struct node
+{
+    node *left, *right;
+    int val;
+}
+node* Search(int val)
+{
+    if(!root)
+        return NULL;
+    node* n = root;
+    while(n && n->val != val)
+    {
+        if(val > n->val)
+            n = n->right
+        else
+            n = n->left
+    }
+    return n;
+}
+
+AVL
+struct node
+{
+    node *left, *right;
+    int val;
+    int bl;
+}
+
+2-3pp
+struct node
+{
+    node *left, *right, *bottom
+    int val;
+}
+
+cc
+struct node
+{
+    node *left, *right;
+    bool color;
+    int val;
+}
+
+b) Zrównoważenie dla drzew AVL wysokość lewego poddrzewa i prawego poddrzewa, każdego węzła, nie różni się o więcej niż 1
+Zrównoważenie dla drzew CC każda sćierzka od roota do liścia zawiera taka samą liczbę czarnych węzłów
+
+c) słowniki
+

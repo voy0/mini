@@ -1,0 +1,18 @@
+Programowanie zachłanne używają algorytmy:
+- Kruskala (minimalne drzewo rozpinające)
+- Dijkstry (najkrótsze ścierzki)
+- ciągły problem plecakowy
+
+Dynamiczne
+- problem plecakowy
+- problem kasjera
+- problem znużonego wędrowca
+
+Algorytmy z powrotami
+- wymaga zapamiętywania stanów, wprowadza się metody oceny nastepnego posunięcia,
+odrzucając stany które nie dają nadzieji na pomyślne rozwiązanie
+- problem konika szachowego
+- problem 8 hetmanów
+
+Heurystyka
+- zależy nam na rozwiązaniu problemu, a nie na optymalizacji

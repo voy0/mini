@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatShare - Moje Wynajmy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div>
+                    <img src="house-chimney-user-solid-full3.svg" width="40em" alt="Logo">
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-indigo-600">FlatShare</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="landing.html" class="hover:text-indigo-600 transition">Start</a>
+                <a href="search.html" class="hover:text-indigo-600 transition">Wyszukiwarka</a>
+                <a href="my-rentals.html" class="text-indigo-600 font-bold border-b-2 border-indigo-600 transition">Moje wynajmy</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-1 rounded font-bold uppercase tracking-wider">Jan Przykładowy</span>
+                <i class="fa-solid fa-circle-user text-2xl text-gray-400"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-10 px-4 min-h-screen">
+        <header class="mb-10">
+            <h1 class="text-4xl font-extrabold text-gray-800">Twoje rezerwacje</h1>
+            <p class="text-gray-500 mt-2">Zarządzaj swoimi zapytaniami i aktualnymi wynajmami w jednym miejscu.</p>
+        </header>
+
+        <div class="space-y-6">
+            
+            <div class="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden flex flex-col md:flex-row hover:shadow-md transition">
+                <div class="md:w-64 h-48 bg-gray-200 shrink-0">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500" class="w-full h-full object-cover" alt="Mokotów">
+                </div>
+                <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="bg-yellow-100 text-yellow-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">
+                                    PENDING_APPROVAL
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono uppercase">ID: aa11bb22...</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Cichy pokój na Mokotowie</h3>
+                            <p class="text-sm text-gray-500 italic"><i class="fa-solid fa-location-dot mr-1"></i>Warszawa, ul. Puławska 12</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-400 font-bold uppercase">Łączny koszt</p>
+                            <p class="text-2xl font-black text-indigo-600">1400.00 PLN</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-50 flex justify-between items-center text-sm">
+                        <div class="flex gap-6 text-gray-500">
+                            <span><i class="fa-solid fa-calendar mr-2 text-indigo-300"></i>Od: <strong>2024-11-01</strong></span>
+                            <span><i class="fa-solid fa-clock mr-2 text-indigo-300"></i>Wysłano: 2024-10-15</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="px-4 py-2 text-gray-400 font-bold hover:text-red-500 transition">Anuluj prośbę</button>
+                            <button class="px-6 py-2 bg-indigo-50 text-indigo-600 font-bold rounded-xl hover:bg-indigo-100 transition">Szczegóły</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden flex flex-col md:flex-row hover:shadow-md transition">
+                <div class="md:w-64 h-48 bg-gray-200 shrink-0">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=500" class="w-full h-full object-cover" alt="Hoża">
+                </div>
+                <div class="p-8 flex-grow flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="bg-yellow-100 text-yellow-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">
+                                    PENDING_APPROVAL
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono uppercase">ID: f47ac10b...</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Nowoczesna kawalerka - Hoża</h3>
+                            <p class="text-sm text-gray-500 italic"><i class="fa-solid fa-location-dot mr-1"></i>Warszawa, ul. Hoża</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-gray-400 font-bold uppercase">Łączny koszt</p>
+                            <p class="text-2xl font-black text-indigo-600">2500.00 PLN</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-50 flex justify-between items-center text-sm">
+                        <div class="flex gap-6 text-gray-500">
+                            <span><i class="fa-solid fa-calendar mr-2 text-indigo-300"></i>Od: <strong>2024-12-15</strong></span>
+                            <span><i class="fa-solid fa-clock mr-2 text-indigo-300"></i>Wysłano: 2024-10-18</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="px-4 py-2 text-gray-400 font-bold hover:text-red-500 transition">Anuluj prośbę</button>
+                            <button class="px-6 py-2 bg-indigo-50 text-indigo-600 font-bold rounded-xl hover:bg-indigo-100 transition">Szczegóły</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-4 border-dashed border-gray-100 rounded-[32px] p-12 text-center">
+                <div class="w-16 h-16 bg-gray-50 text-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                </div>
+                <p class="text-gray-400 font-bold">Szukasz czegoś jeszcze?</p>
+                <a href="search.html" class="text-indigo-600 text-sm font-bold hover:underline">Wróć do wyszukiwarki</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <div>
+                    <img src="house-chimney-user-solid-full3.svg" width="40em" alt="Logo">
+                </div>
+                <span class="text-lg font-bold">FlatShare</span>
+            </div>
+            <p class="text-gray-500">© 2026 Projekt: Jakub Rak, Bartosz Radomski, Sofiia Kuzmenko, Piotr Wójcik.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <i class="fa-brands fa-github text-xl cursor-pointer hover:text-indigo-400 transition"></i>
+                <i class="fa-brands fa-figma text-xl cursor-pointer hover:text-indigo-400 transition"></i>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatShare - System Dopasowania Mieszkań</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div>
+                    <img src = "house-chimney-user-solid-full3.svg" width="40em"></img>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-indigo-600">FlatShare</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#landing" class="hover:text-indigo-600 transition">Start</a>
+                <a href="search.html" class="hover:text-indigo-600 transition">Szukaj pokoju</a>
+                <a href="my-rentals.html" class="hover:text-indigo-600 transition">Moje wynajmy</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition">Zaloguj się</button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="landing" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-5xl font-extrabold leading-tight mb-6">Znajdź pokój, <br> który <span class="text-indigo-600">pasuje</span> do Ciebie.</h1>
+                <p class="text-lg text-gray-600 mb-8">System FlatShare łączy właścicieli z lokatorami dzięki zaawansowanemu algorytmowi dopasowania preferencji.</p>
+                <div class="flex gap-4">
+                    <a href="search.html" class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-indigo-700">Zacznij szukać</a>
+                    <button class="border-2 border-gray-200 px-8 py-4 rounded-xl font-bold hover:bg-gray-50">Wystaw ogłoszenie</button>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800" class="rounded-3xl shadow-2xl" alt="Mieszkanie">
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-green-100 text-green-600 p-2 rounded-full"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-800">Match Score: 95%</p>
+                            <p class="text-xs text-gray-500">Idealny pokój!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="search" class="bg-white py-20 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2 text-gray-800">Dopasowane oferty</h2>
+                    <p class="text-gray-500">Wyniki wyszukiwania dla: <span class="font-semibold">Warszawa, Mokotów</span></p>
+                </div>
+                <div class="flex gap-4">
+                    <select class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 ring-indigo-500">
+                        <option>Cena: do 2000 PLN</option>
+                        <option>Cena: do 3000 PLN</option>
+                    </select>
+                    <select class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 ring-indigo-500">
+                        <option>Sortuj: Match Score</option>
+                        <option>Sortuj: Najnowsze</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">95% Dopasowania</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-800 leading-tight">Cichy pokój przy metrze</h3>
+                            <span class="text-indigo-600 font-bold">1400.00 PLN</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4"><i class="fa-solid fa-location-dot mr-1"></i> Warszawa, Puławska</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="bg-gray-100 text-[10px] px-2 py-1 rounded uppercase font-bold text-gray-500">Niepalący</span>
+                            <span class="bg-gray-100 text-[10px] px-2 py-1 rounded uppercase font-bold text-gray-500">Student</span>
+                        </div>
+                        <button class="w-full bg-gray-900 text-white py-3 rounded-xl font-semibold hover:bg-indigo-600 transition">Zarezerwuj teraz</button>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=500" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 left-4 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">82% Dopasowania</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-gray-800 leading-tight">Nowoczesne studio centrum</h3>
+                            <span class="text-indigo-600 font-bold">2100.00 PLN</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4"><i class="fa-solid fa-location-dot mr-1"></i> Warszawa, Marszałkowska</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="bg-gray-100 text-[10px] px-2 py-1 rounded uppercase font-bold text-gray-500">Zwierzęta OK</span>
+                        </div>
+                        <button class="w-full bg-gray-900 text-white py-3 rounded-xl font-semibold hover:bg-indigo-600 transition">Zarezerwuj teraz</button>
+                    </div>
+                </div>
+
+                <div class="border-2 border-dashed border-gray-200 rounded-2xl flex flex-col items-center justify-center p-8 text-center group hover:border-indigo-300 transition">
+                    <div class="w-16 h-16 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mb-4 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition">
+                        <i class="fa-solid fa-plus text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800">Wystaw ogłoszenie</h3>
+                    <p class="text-sm text-gray-400 mt-2">Masz wolny pokój? Dodaj go w kilka minut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-10 text-gray-800">Status Twoich rezerwacji</h2>
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b border-gray-100 text-gray-400 text-xs uppercase font-bold">
+                        <tr>
+                            <th class="px-8 py-4">Obiekt</th>
+                            <th class="px-8 py-4">Data rozpoczęcia</th>
+                            <th class="px-8 py-4">Kwota (PLN)</th>
+                            <th class="px-8 py-4">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-50">
+                        <tr>
+                            <td class="px-8 py-6 font-semibold">Pokój na Mokotowie</td>
+                            <td class="px-8 py-6 text-gray-500">2024-11-01</td>
+                            <td class="px-8 py-6 font-bold text-indigo-600">9600.00</td>
+                            <td class="px-8 py-6">
+                                <span class="bg-yellow-100 text-yellow-700 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Oczekuje</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-8 py-6 font-semibold">Apartament Centrum</td>
+                            <td class="px-8 py-6 text-gray-500">2024-10-15</td>
+                            <td class="px-8 py-6 font-bold text-indigo-600">3200.00</td>
+                            <td class="px-8 py-6">
+                                <span class="bg-green-100 text-green-700 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Zakceptowano</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div>
+                    <img src = "house-chimney-user-solid-full3.svg" width="40em"></img>
+                </div>
+                <span class="text-xl font-bold">FlatShare</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 Projekt: Jakub Rak, Bartosz Radomski, Sofiia Kuzmenko, Piotr Wójcik.</p>
+            <div class="flex gap-6 text-xl text-gray-400">
+                <i class="fa-brands fa-github hover:text-white cursor-pointer transition"></i>
+                <i class="fa-brands fa-linkedin hover:text-white cursor-pointer transition"></i>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

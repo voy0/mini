@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatShare - Szczegóły Ogłoszenia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div>
+                    <img src="house-chimney-user-solid-full3.svg" width="40em" alt="Logo">
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-indigo-600">FlatShare</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="landing.html" class="hover:text-indigo-600 transition">Start</a>
+                <a href="search.html" class="hover:text-indigo-600 transition">Wyszukiwarka</a>
+                <a href="my-rentals.html" class="hover:text-indigo-600 transition">Moje wynajmy</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-1 rounded font-bold uppercase tracking-wider">Jan Przykładowy</span>
+                <i class="fa-solid fa-circle-user text-2xl text-gray-400"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-10 px-4">
+        <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+            <div>
+                <nav class="text-xs text-gray-400 mb-2 uppercase font-bold tracking-widest">
+                    Warszawa / Mokotów / Puławska
+                </nav>
+                <h1 class="text-4xl font-extrabold text-gray-800">Cichy pokój na Mokotowie</h1>
+                <p class="text-gray-500 mt-2"><i class="fa-solid fa-calendar-days mr-2"></i>Dostępne od: <span class="font-semibold text-gray-700">2024-11-01</span></p>
+            </div>
+            <div class="text-right">
+                <div class="bg-indigo-600 text-white px-4 py-1 rounded-full text-xs font-black mb-2 inline-block">95% MATCH SCORE</div>
+                <p class="text-4xl font-black text-indigo-600 tracking-tighter">1400.00 PLN <span class="text-lg font-normal text-gray-400">/mies.</span></p>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+                <div class="aspect-video w-full rounded-[32px] overflow-hidden shadow-2xl border-8 border-white">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200" class="w-full h-full object-cover" alt="Pokój">
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+                    <h2 class="text-xl font-bold mb-6">Wyposażenie części wspólnych</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-kitchen-set text-indigo-500"></i> Kuchnia
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-bath text-indigo-500"></i> Łazienka
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-hot-tub-person text-indigo-500"></i> Piekarnik
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-faucet text-indigo-500"></i> Zlew
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-refrigerator text-indigo-500"></i> Lodówka
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-wind text-indigo-500"></i> Odkurzacz
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fa-solid fa-tv text-indigo-500"></i> Telewizor
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+                    <h2 class="text-xl font-bold mb-6">Pokoje w mieszkaniu (Sypialnie)</h2>
+                    <div class="space-y-6">
+                        <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100">
+                            <h3 class="font-bold text-indigo-900 mb-2">Pokój 1 (Wolny) - 12 m²</h3>
+                            <p class="text-sm text-gray-600">Łóżko jednoosobowe, biurko do pracy, krzesło biurowe, szafa na ubrania, komoda, rolety zaciemniające.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-gray-100">
+                            <h3 class="font-bold text-gray-800 mb-2">Pokój 2 - 15 m² (Zajęty)</h3>
+                            <p class="text-sm text-gray-500">Duże łóżko małżeńskie, biurko, regał na książki, szafa wnękowa.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-gray-100">
+                            <h3 class="font-bold text-gray-800 mb-2">Pokój 3 - 10 m² (Zajęty)</h3>
+                            <p class="text-sm text-gray-500">Łóżko polowe, biurko, szafka nocna, wieszak na ubrania.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 text-center">
+                        <i class="fa-solid fa-up-right-and-down-left-from-center text-indigo-500 mb-2 text-xl"></i>
+                        <p class="text-xs font-bold text-gray-400 uppercase">Pokój</p>
+                        <p class="text-lg font-bold text-gray-800">12 m²</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 text-center">
+                        <i class="fa-solid fa-border-all text-indigo-500 mb-2 text-xl"></i>
+                        <p class="text-xs font-bold text-gray-400 uppercase">Mieszkanie</p>
+                        <p class="text-lg font-bold text-gray-800">64 m²</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 text-center">
+                        <i class="fa-solid fa-door-open text-indigo-500 mb-2 text-xl"></i>
+                        <p class="text-xs font-bold text-gray-400 uppercase">Liczba pokoi</p>
+                        <p class="text-lg font-bold text-gray-800">3</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-indigo-100 text-center ring-2 ring-indigo-50 shadow-sm">
+                        <i class="fa-solid fa-bed text-indigo-500 mb-2 text-xl"></i>
+                        <p class="text-xs font-bold text-gray-400 uppercase">Wolne miejsca</p>
+                        <p class="text-lg font-bold text-indigo-600 tracking-tight">1 / 3</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl sticky top-24">
+                    <h3 class="text-lg font-bold mb-6">Zarezerwuj ten pokój</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Czynsz</span>
+                            <span class="font-bold">1400.00 PLN</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Media (szacunkowo)</span>
+                            <span class="font-bold">250.00 PLN</span>
+                        </div>
+                        <div class="border-t pt-4 flex justify-between items-center">
+                            <span class="font-bold text-gray-800 text-lg">Suma</span>
+                            <span class="text-2xl font-black text-indigo-600">1650.00 PLN</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full gradient-bg text-white py-4 rounded-2xl font-bold shadow-lg hover:scale-[1.02] transition transform active:scale-95 mb-4">
+                        Poproś o rezerwację
+                    </button>
+                    <p class="text-[10px] text-gray-400 text-center uppercase font-bold tracking-tight">Status po kliknięciu: PENDING_APPROVAL</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+                    <h3 class="text-lg font-bold mb-6">Zasady domu</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 text-sm">
+                            <i class="fa-solid fa-ban-smoking text-red-400 w-5"></i>
+                            <span class="text-gray-600">Tylko dla niepalących</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <i class="fa-solid fa-paw text-green-500 w-5"></i>
+                            <span class="text-gray-600">Zwierzęta są akceptowane</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <i class="fa-solid fa-graduation-cap text-blue-500 w-5"></i>
+                            <span class="text-gray-600">Preferowany profil: <span class="font-bold">Student</span></span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <i class="fa-solid fa-cart-shopping text-orange-500 w-5"></i>
+                            <span class="text-gray-600">Blisko sklep (Biedronka 2 min)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 p-6 rounded-3xl border border-indigo-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-indigo-200 rounded-full flex items-center justify-center text-indigo-600 font-bold">JW</div>
+                        <div>
+                            <p class="text-sm font-bold text-indigo-900 leading-none">Jacek Właścicielowski</p>
+                            <p class="text-[10px] text-indigo-400 font-bold uppercase">Właściciel</p>
+                        </div>
+                    </div>
+                    <button class="text-indigo-600 hover:text-indigo-800 transition">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <div>
+                    <img src="house-chimney-user-solid-full3.svg" width="40em" alt="Logo">
+                </div>
+                <span class="text-lg font-bold">FlatShare</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 Projekt: Jakub Rak, Bartosz Radomski, Sofiia Kuzmenko, Piotr Wójcik.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <i class="fa-brands fa-github text-xl cursor-pointer hover:text-indigo-400"></i>
+                <i class="fa-brands fa-figma text-xl cursor-pointer hover:text-indigo-400"></i>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

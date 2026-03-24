@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatShare - Wyszukiwarka Zaawansowana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div>
+                    <img src = "house-chimney-user-solid-full3.svg" width="40em"></img>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-indigo-600">FlatShare</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="landing.html" class="hover:text-indigo-600">Start</a>
+                <a href="#" class="text-indigo-600 border-b-2 border-indigo-600">Wyszukiwarka</a>
+                <a href="my-rentals.html" class="hover:text-indigo-600">Moje Wynajmy</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-[10px] bg-indigo-50 text-indigo-600 px-2 py-1 rounded font-bold">Jan Przykładowy</span>
+                <i class="fa-solid fa-circle-user text-2xl text-gray-400"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-10 px-4">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <aside class="lg:w-1/3 xl:w-1/4 space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-filter text-indigo-600"></i> Filtruj oferty
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Lokalizacja</label>
+                            <div class="space-y-2">
+                                <input type="text" placeholder="Miasto (np. Warszawa)" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 ring-indigo-500 outline-none">
+                                <input type="text" placeholder="Dzielnica (np. Mokotów)" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 ring-indigo-500 outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Cena (PLN)</label>
+                            <div class="flex items-center gap-2">
+                                <input type="number" placeholder="Min" class="w-1/2 bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm">
+                                <span class="text-gray-300">-</span>
+                                <input type="number" placeholder="Max" class="w-1/2 bg-gray-50 border border-gray-200 rounded-lg p-2 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Preferencje & Styl życia</label>
+                            <div class="grid grid-cols-1 gap-3 mt-3">
+                                <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition">
+                                    <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="text-sm text-gray-700"><i class="fa-solid fa-paw mr-2 text-gray-400"></i>Akceptuję zwierzęta</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition">
+                                    <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="text-sm text-gray-700"><i class="fa-solid fa-ban-smoking mr-2 text-gray-400"></i>Tylko niepalący</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition">
+                                    <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="text-sm text-gray-700"><i class="fa-solid fa-cart-shopping mr-2 text-indigo-600"></i>Blisko sklep</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 transition">
+                                    <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="text-sm text-gray-700"><i class="fa-solid fa-graduation-cap mr-2 text-gray-400"></i>Profil: Student</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Powierzchnia pokoju (m²)</label>
+                            <input type="range" min="5" max="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                            <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                                <span>5m²</span>
+                                <span>50m²</span>
+                            </div>
+                        </div>
+
+
+                        <button class="w-full gradient-bg text-white py-4 rounded-xl font-bold hover:shadow-lg transition-all transform active:scale-95">
+                            Szukaj
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="lg:w-2/3 xl:w-3/4">
+                <div class="mb-6 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-800">Wyniki wyszukiwania <span class="text-gray-400 font-normal">(5)</span></h3>
+                    <div class="flex gap-2">
+                        <button class="bg-indigo-600 text-white p-2 rounded-lg text-sm px-4 font-bold">Najlepszy Match</button>
+                        <button class="bg-white border p-2 rounded-lg text-sm px-4 text-gray-500">Najnowsze</button>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <div class="bg-white p-4 rounded-2xl border border-gray-100 flex gap-6 hover:shadow-md transition group">
+                        <div class="w-48 h-32 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-2 left-2 bg-indigo-600 text-white text-[10px] font-extrabold px-2 py-1 rounded">95% MATCH</div>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg text-gray-800">Cichy pokój na Mokotowie</h4>
+                                    <span class="text-xl font-extrabold text-indigo-600">1400.00 PLN</span>
+                                </div>
+                                <p class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Warszawa, ul. Puławska 12</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex gap-2">
+                                    <span class="text-[10px] bg-green-50 text-green-600 px-2 py-1 rounded font-bold uppercase">Niepalący</span>
+                                    <span class="text-[10px] bg-orange-50 text-orange-600 px-2 py-1 rounded font-bold uppercase">Zwierzęta OK</span>
+                                
+                                    <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded font-bold uppercase">Blisko sklep</span>
+                                </div>
+                                <button onclick = "location.href = 'details.html'" class="text-indigo-600 font-bold text-sm hover:underline">Szczegóły →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border border-gray-100 flex gap-6 hover:shadow-md transition group opacity-100">
+                        <div class="w-48 h-32 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-indigo-600 text-white text-[10px] font-extrabold px-2 py-1 rounded">88% MATCH</div>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg text-gray-800">Nowoczesna kawalerka - Hoża</h4>
+                                    <span class="text-xl font-extrabold text-indigo-600">2500.00 PLN</span>
+                                </div>
+                                <p class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Warszawa, ul. Hoża</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex gap-2">
+                                    <span class="text-[10px] bg-orange-50 text-orange-600 px-2 py-1 rounded font-bold uppercase">Zwierzęta OK</span>
+                                </div>
+                                <button class="text-indigo-600 font-bold text-sm hover:underline">Szczegóły →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border border-gray-100 flex gap-6 hover:shadow-md transition group opacity-100">
+                        <div class="w-48 h-32 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=400" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-indigo-400 text-white text-[10px] font-extrabold px-2 py-1 rounded">48% MATCH</div>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Apartament studencki - Wilanów</h4>
+                                <p class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Warszawa, Wilanów</p>
+                                    <span class="text-[10px] bg-orange-50 text-orange-600 px-2 py-1 rounded font-bold uppercase">Zwierzęta OK</span>
+                                    <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded font-bold uppercase">Blisko sklep</span>
+
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-lg font-bold text-gray-400">2400.00 PLN</span>
+                                <button class="text-gray-400 font-bold text-sm">Pokaż ofertę</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-gray-100 flex gap-6 hover:shadow-md transition group opacity-100">
+                        <div class="w-48 h-32 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=400" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-indigo-300 text-white text-[10px] font-extrabold px-2 py-1 rounded">35% MATCH</div>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Pokój przy parku</h4>
+                                <p class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Warszawa, Praga</p>
+                                    <span class="text-[10px] bg-orange-50 text-orange-600 px-2 py-1 rounded font-bold uppercase">Zwierzęta OK</span>
+
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-lg font-bold text-gray-400">1700.00 PLN</span>
+                                <button class="text-gray-400 font-bold text-sm">Pokaż ofertę</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-gray-100 flex gap-6 hover:shadow-md transition group opacity-100">
+                        <div class="w-48 h-32 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-gray-400 text-white text-[10px] font-extrabold px-2 py-1 rounded">10% MATCH</div>
+                        </div>
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Pokój dla studenta AGH</h4>
+                                <p class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Kraków, Krowodrza</p>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <span class="text-lg font-bold text-gray-400">1200.00 PLN</span>
+                                <button class="text-gray-400 font-bold text-sm">Pokaż ofertę</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <div>
+                    <img src = "house-chimney-user-solid-full3.svg" width="40em"></img>
+                </div>
+                <span class="text-lg font-bold">FlatShare</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 Projekt: Jakub Rak, Bartosz Radomski, Sofiia Kuzmenko, Piotr Wójcik.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <i class="fa-brands fa-github text-xl cursor-pointer hover:text-indigo-400"></i>
+                <i class="fa-brands fa-figma text-xl cursor-pointer hover:text-indigo-400"></i>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
